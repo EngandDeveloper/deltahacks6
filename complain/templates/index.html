@@ -20,6 +20,19 @@
       <p> List of the recent complaints in your area: </p> 
     </div>
 
+    <div id="camera">
+      <input type="file" accept="image/*" capture>
+      <canvas></canvas>
+      <video autoplay></video>
+      <script>
+        const constraints = {
+          video: true
+        };
+        var input = document.querySelector('video'); // see Example 4
+        navigator.mediaDevices.getUserMedia(constraints).then((stream) => {input.srcObject = stream});
+      </script>
+    </div>
+
   </body>
 
 </html>
