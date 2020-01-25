@@ -44,15 +44,16 @@
               title: "Thode",
               subTitle: 'Library',
               text: '1'
-          });   
-          pin.metadata = {
-              title: 'Thode Library',
-              description: 'Lorem ipsum'
-          };
-          Microsoft.Maps.Events.addHandler(pin, 'click', pushpinClicked);
+          });
+          var infobox = new Microsoft.Maps.Infobox(cur_location,{ title: 'LIBRARY', description: 'yeet', visible: false });
+          infobox.setMap(map);   
+          Microsoft.Maps.Events.addHandler(pin, 'click', function(){
+              infobox.setOptions({visible: true});
+          });
 
           map.entities.push(pin);
         }
+ 
         
 
         
