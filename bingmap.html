@@ -19,9 +19,9 @@
     </body>
     <body>
 
-        <p>Display current coordinates.</p>
+        <!-- <p>Display current coordinates.</p> -->
         
-        <button onclick="getLocation()">Try It</button>
+        <button onclick="getLocation()">Display current longitude and latitude.</button>
         
         <p id="demo"></p>
         
@@ -39,7 +39,23 @@
         function showPosition(position) {
           x.innerHTML = "Latitude: " + position.coords.latitude + 
           "<br>Longitude: " + position.coords.longitude;
+          var cur_location = new Microsoft.Maps.Location(position.coords.latitude,position.coords.longitude);
+          var pin = new Microsoft.Maps.Pushpin(cur_location,{
+              title: "Thode",
+              subTitle: 'Library',
+              text: '1'
+          });   
+          pin.metadata = {
+              title: 'Thode Library',
+              description: 'Lorem ipsum'
+          };
+          Microsoft.Maps.Events.addHandler(pin, 'click', pushpinClicked);
+
+          map.entities.push(pin);
         }
+        
+
+        
         </script>
         
     </body>
