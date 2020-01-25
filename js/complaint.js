@@ -11,7 +11,13 @@ appId: "1:568515317237:web:3c74db9d68b59b7baf64bc"
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-
+console.log(firebase);
+//new database
+var database = firebase.database();
+console.log(firebase);
+// console.log(database);
+//add data to database
+var ref = database.ref("locations");
 
 //our code
 var position = navigator.geolocation.getCurrentPosition( newComplaint );
@@ -23,6 +29,12 @@ function newComplaint(position){
     var complaintText = document.getElementById(''); // get user complaint's text
     var complainImage = document.getElementById(''); // get user complaint's image
     var complaintId = parseInt(Math.random() * 1000000000 + 1);
+    var data = {
+        complaintId: complaintId,
+        lat: lat,
+        long: long,
+    };
+    ref.push(data);
     console.log(complaintId);
 }
 
