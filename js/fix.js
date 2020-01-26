@@ -157,17 +157,17 @@ function newFix(fixId, position){
     console.log("Lat and long of the new fix are: ", lat, long);
 }
 
-while(imgURL != null){
-    // console.log("inside the last WHILE LOOP");
-    if(fixIdOutput.textContent != null){
-        // console.log("Inside the last IF");
-        newComplaint();
-        // console.log("About to do newFix");
-        newFix(fixIdOutput.textContent, position2);
-        start = false;
-    }else{
-        alert("Please enter a complaint message!!!");
-    }
-}
+// while(imgURL != null){
+//     // console.log("inside the last WHILE LOOP");
+//     if(fixIdOutput.textContent != null){
+//         // console.log("Inside the last IF");
+//         newComplaint();
+//         // console.log("About to do newFix");
+//         newFix(fixIdOutput.textContent, position2);
+//         start = false;
+//     }else{
+//         alert("Please enter a complaint message!!!");
+//     }
+// }
 
 console.log("got here?")
