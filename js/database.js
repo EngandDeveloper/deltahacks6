@@ -37,8 +37,11 @@ function gotData(data){
         var message = locations[k].message;
         console.log(complaintId, lat, long, url);
         var newComplaint = document.createElement("li");
+        var complaintImg = document.createElement("img");
+        complaintImg.src = url;
         newComplaint.textContent = "Complaint ID: " + String(complaintId) + " Lat, Long: (" + 
-        String(lat) + "," + String(long) + ") Message: " + String(message) + " Picture url: " + url;
+        String(lat) + "," + String(long) + ") Message: " + String(message);
+        newComplaint.appendChild(complaintImg);
         currentComplaintsList.appendChild(newComplaint);
     }
 }
