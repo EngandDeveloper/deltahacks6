@@ -13,6 +13,9 @@
         <!-- <button onclick="uploadImage()">Upload Image</button> -->
         <!-- Stream video via webcam -->
 
+        <input type="text" id="complaintMessage" placeholder="Please write a brief explanation of what the problem is.">
+        <button id="submitMessage" onclick="submitMes()"> Submit Message </button>
+        <p id="complaintMessageOutput"></p>
         <video id="video" width=400 height=400 playsinline controls autoplay></video>
         <!-- Trigger canvas web API -->
         <button id="snap">Capture</button>

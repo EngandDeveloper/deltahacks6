@@ -16,6 +16,15 @@ firebase.initializeApp(firebaseConfig);
 var database = firebase.database();
 console.log("Firebase is working???", database);
 
+//html objects
+var complaintMessage = document.getElementById("complaintMessage");
+var complaintMessageOutput = document.getElementById("complaintMessageOutput");
+
+function submitMes(){
+    complaintMessageOutput.textContent = complaintMessage.value;
+    complaintMessage.value = "";
+}
+
 //add data to database
 var ref = database.ref("locations");
 var imgURL = String(localStorage.getItem("imgUrl"));
@@ -37,8 +46,8 @@ function newComplaint(position){
     long = position.coords.longitude;
     console.log("Lat and long of the new complaint are: ", lat, long);
 
-    var complaintText = document.getElementById(''); // get user complaint's text
-    var complainImage = document.getElementById(''); // get user complaint's image
+    // var complaintText = document.getElementById(''); // get user complaint's text
+    // var complainImage = document.getElementById(''); // get user complaint's image
     complaintId = parseInt(Math.random() * 1000000000 + 1);
     
 }
@@ -111,13 +120,13 @@ function uploadImage() {
     stor.child(new Date() + '-' + 'base64').putString(image.src, 'data_url').then(function(snapshot) {
         console.log('Uploaded a data_url string!');
         alert("Image Uploaded");
-        console.log("FILEEEEEEEEEEEEE 1: ", this.imgUrl);
+        // console.log("FILEEEEEEEEEEEEE 1: ", this.imgUrl);
         snapshot.ref.getDownloadURL().then(function(downloadURL){
             console.log('File available at', downloadURL);
             imgUrl = String(downloadURL);
-            console.log("FILEEEEEEEEEEEEE4: ", imgUrl);
-            console.log("LOCAL STORAGE IS HERE: ", localStorage.getItem("imgUrl"));
-            console.log("FILEEEEEEEEEEEEE: ", imgUrl);
+            // console.log("FILEEEEEEEEEEEEE4: ", imgUrl);
+            // console.log("LOCAL STORAGE IS HERE: ", localStorage.getItem("imgUrl"));
+            // console.log("FILEEEEEEEEEEEEE: ", imgUrl);
             localStorage.setItem("URL",String(downloadURL));   
           });
         snapshot.ref.getDownloadURL().then(function(downloadURL) {
@@ -126,6 +135,7 @@ function uploadImage() {
                 lat: lat,
                 long: long,
                 url: String(downloadURL),
+                message: String(complaintMessageOutput.textContent),
             };
             ref.push(data);
         });
@@ -137,7 +147,7 @@ function uploadImage() {
   }
     var iUrl = localStorage.getItem("imgUrl");
     imgUrl = iUrl
-    console.log("FILEEEEEEEEEEEEE 2: ", imgUrl);
+    // console.log("FILEEEEEEEEEEEEE 2: ", imgUrl);
 });
 
 function newFix(complaintId, position){
@@ -147,9 +157,13 @@ function newFix(complaintId, position){
 }
 
 while(imgURL != null){
-    newComplaint();
-    newFix(234, position);
-    start = false;
+    if(complaintMessageOutput.textContent != null){
+        newComplaint();
+        newFix(234, position);
+        start = false;
+    }else{
+        alert("Please enter a complaint message!!!");
+    }
 }
 
 console.log("got here?")

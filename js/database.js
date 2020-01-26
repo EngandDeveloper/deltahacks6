@@ -34,10 +34,11 @@ function gotData(data){
         var lat = locations[k].lat;
         var long = locations[k].long;
         var url = locations[k].url;
+        var message = locations[k].message;
         console.log(complaintId, lat, long, url);
         var newComplaint = document.createElement("li");
         newComplaint.textContent = "Complaint ID: " + String(complaintId) + " Lat, Long: (" + 
-        String(lat) + "," + String(long) + ") Picture url: " + url;
+        String(lat) + "," + String(long) + ") Message: " + String(message) + " Picture url: " + url;
         currentComplaintsList.appendChild(newComplaint);
     }
 }
