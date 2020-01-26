@@ -17,38 +17,39 @@ var database = firebase.database();
 console.log("Firebase is working???", database);
 
 //html objects
-var complaintMessage = document.getElementById("complaintMessage");
-var complaintMessageOutput = document.getElementById("complaintMessageOutput");
+var fixId = document.getElementById("fixId");
+var fixIdOutput = document.getElementById("fixIdOutput");
 
 function submitMes(){
-    complaintMessageOutput.textContent = complaintMessage.value;
-    complaintMessage.value = "";
+    fixIdOutput.textContent = fixId.value;
+    fixId.value = "";
 }
 
 //add data to database
-var ref = database.ref("locations");
+var ref = database.ref("fixes");
 var imgURL = String(localStorage.getItem("imgUrl"));
 var start = localStorage.getItem("start");
 console.log("LOCALE STORAGE IS:", localStorage.getItem("imgUrl"));
 console.log("In complaint.js url is ", imgURL);
 
-var complaintId = 0;
+var fixedId = 0;
 var lat = 0;
 var long = 0;
 
 //our code
 pic_taken = false;
 console.log(localStorage.getItem("pic"));
+var position2 = navigator.geolocation.getCurrentPosition( newFix );
 var position = navigator.geolocation.getCurrentPosition( newComplaint );
 function newComplaint(position){
     pic_taken = localStorage.getItem("pic");
     lat = position.coords.latitude;
     long = position.coords.longitude;
     console.log("Lat and long of the new complaint are: ", lat, long);
-
+    fixedId = fixIdOutput.textContent;
     // var complaintText = document.getElementById(''); // get user complaint's text
     // var complainImage = document.getElementById(''); // get user complaint's image
-    complaintId = parseInt(Math.random() * 1000000000 + 1);
+    // complaintId = parseInt(Math.random() * 1000000000 + 1);
     
 }
 
@@ -131,18 +132,18 @@ function uploadImage() {
           });
         snapshot.ref.getDownloadURL().then(function(downloadURL) {
             var data = {
-                complaintId: complaintId,
+                fixedId: fixIdOutput.textContent,
                 lat: lat,
                 long: long,
                 url: String(downloadURL),
-                message: String(complaintMessageOutput.textContent),
+                // message: String(complaintMessageOutput.textContent),
             };
             ref.push(data);
         });
 
           
         // ref.push(data);
-        console.log(complaintId);
+        console.log(fixedId);
       });
   }
     var iUrl = localStorage.getItem("imgUrl");
@@ -150,16 +151,19 @@ function uploadImage() {
     // console.log("FILEEEEEEEEEEEEE 2: ", imgUrl);
 });
 
-function newFix(complaintId, position){
-    var lat = position.coords.latitude;
-    var long = position.coors.longitude;
+function newFix(fixId, position){
+    lat = position.coords.latitude;
+    long = position.coors.longitude;
     console.log("Lat and long of the new fix are: ", lat, long);
 }
 
 while(imgURL != null){
-    if(complaintMessageOutput.textContent != ""){
+    // console.log("inside the last WHILE LOOP");
+    if(fixIdOutput.textContent != null){
+        // console.log("Inside the last IF");
         newComplaint();
-        newFix(234, position);
+        // console.log("About to do newFix");
+        newFix(fixIdOutput.textContent, position2);
         start = false;
     }else{
         alert("Please enter a complaint message!!!");
