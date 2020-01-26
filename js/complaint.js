@@ -44,8 +44,6 @@ function newComplaint(position){
     pic_taken = localStorage.getItem("pic");
     lat = position.coords.latitude;
     long = position.coords.longitude;
-    lat = parseFloat(lat).toFixed(2);
-    long = parseFloat(long).toFixed(2);
     console.log("Lat and long of the new complaint are: ", lat, long);
 
     // var complaintText = document.getElementById(''); // get user complaint's text
