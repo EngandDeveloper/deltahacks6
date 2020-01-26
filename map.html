@@ -24,8 +24,63 @@
         <button onclick="getLocation()">Display current longitude and latitude.</button>
         
         <p id="demo"></p>
-        
+
+        <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-storage.js"></script>
+  
         <script>
+        // Firebase config
+// Your web app's Firebase configuration
+
+var firebaseConfig = {
+    apiKey: "AIzaSyBpUTMCZ_0CTHZEQ17BmtonkJ7VaTTFTjM",
+    authDomain: "deltahacks6-fa1f6.firebaseapp.com",
+    databaseURL: "https://deltahacks6-fa1f6.firebaseio.com",
+    projectId: "deltahacks6-fa1f6",
+    storageBucket: "deltahacks6-fa1f6.appspot.com",
+    messagingSenderId: "568515317237",
+    appId: "1:568515317237:web:3c74db9d68b59b7baf64bc"
+};
+    
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+//new database
+var database = firebase.database();
+
+console.log("Data base is: ", database);
+
+var ref = database.ref("locations");
+
+
+//variables
+var currentComplaintsList = document.getElementById("currentComplaintsList");
+
+function gotData(data){
+    console.log(data.val());
+    var locations = data.val();
+    var keys = Object.keys(locations);
+    for(var i = 0; i < keys.length; i++){
+        var k = keys[i];
+        var complaintId = locations[k].complaintId;
+        var lat = locations[k].lat;
+        var long = locations[k].long;
+        var url = locations[k].url;
+        var message = locations[k].message;
+        console.log(complaintId, lat, long, url,i);
+        var newComplaint = document.createElement("li");
+        var complaintImg = document.createElement("img");
+        complaintImg.src = url;
+        addPin(lat,long,String(complaintId),message,url,String(i + 1));
+        newComplaint.appendChild(complaintImg);
+    }
+}
+
+function errData(err){
+    console.log("Error", err);
+}
         var x = document.getElementById("demo");
         
         function getLocation() {
@@ -51,23 +106,22 @@
           Microsoft.Maps.Events.addHandler(pin, 'click', function(){
               infobox.setOptions({visible: true});
           });
-          addPin(43.260962,-79.922,"Thode 2","hiya",'"https://firebasestorage.googleapis.com/v0/b/deltahacks6-fa1f6.appspot.com/o/Sun%20Jan%2026%202020%2009%3A53%3A05%20GMT-0500%20(Eastern%20Standard%20Time)-base64?alt=media&token=c9b2cdd6-c4a7-41b3-b494-62c2a6535f05"');
-          map.entities.push(pin);  
+          
+          ref.on("value", gotData, errData);
         }
-        function addPin(lat,long,Title,subtitle,url){
+        
+        getLocation();
+        function addPin(lat,long,Title,subtitle,url,i){
           var location = new Microsoft.Maps.Location(lat,long);
           var new_pin = new Microsoft.Maps.Pushpin(location,{ 
-            title: Title, subTitle: "test", visible: true});
-          var infobox = new Microsoft.Maps.Infobox(location,{ title: Title, description: subtitle + '<img src =' + url + ' />' , visible: false });
+            title: Title, text: i, visible: true});
+          var infobox = new Microsoft.Maps.Infobox(location,{ title: Title, description: subtitle + '<img src =' + url + ' />' , visible: false, maxHeight: 1000 });
           infobox.setMap(map);
           Microsoft.Maps.Events.addHandler(new_pin, 'click', function(){
               infobox.setOptions({visible: true});
           });
           map.entities.push(new_pin);
         }
-        console.log("past pin");
-        getLocation();
-        
         
         
 
