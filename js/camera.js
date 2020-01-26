@@ -82,10 +82,10 @@ button.onclick = function() {
         snapshot.ref.getDownloadURL().then(function(downloadURL){
             console.log('File available at', downloadURL);
             imgUrl = String(downloadURL);
-            imgUrl = localStorage.setItem("imgUrl", imgUrl);
-            start = false;
-            localStorage.setItem("start", start);
-            //console.log("FILEEEEEEEEEEEEE: ", imgUrl);
+            console.log("FILEEEEEEEEEEEEE4: ", imgUrl);
+            localStorage.setItem("imgUrl", imgUrl);
+            console.log("LOCAL STORAGE IS HERE: ", localStorage.getItem("imgUrl"));
+            console.log("FILEEEEEEEEEEEEE: ", imgUrl);
         });
     });
 }

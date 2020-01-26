@@ -33,14 +33,16 @@ function newComplaint(position){
     var complaintText = document.getElementById(''); // get user complaint's text
     var complainImage = document.getElementById(''); // get user complaint's image
     var complaintId = parseInt(Math.random() * 1000000000 + 1);
-    var data = {
-        complaintId: complaintId,
-        lat: lat,
-        long: long,
-        url: imgURL,
-    };
-    ref.push(data);
-    console.log(complaintId);
+    if (imgURL != "null"){
+        var data = {
+            complaintId: complaintId,
+            lat: lat,
+            long: long,
+            url: imgURL,
+        };
+        ref.push(data);
+        console.log(complaintId);
+    }
 }
 
 function newFix(complaintId, position){
@@ -49,7 +51,7 @@ function newFix(complaintId, position){
     console.log("Lat and long of the new fix are: ", lat, long);
 }
 
-while(start){
+while(imgURL != null){
     newComplaint();
     newFix(234, position);
     start = false;
