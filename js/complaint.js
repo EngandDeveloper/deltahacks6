@@ -97,31 +97,30 @@ function uploadImage() {
   // Draw image
   var context = canvas.getContext('2d');
   snap.addEventListener("click", function() {
-      context.drawImage(video, 0, 0, 640, 480);
-      var image = new Image();
-  image.id = "pic";
-  image.src = canvas.toDataURL();
-  console.log(image.src)
-  var button = document.createElement('button')
-  button.textContent = 'Upload Image'
-  document.body.appendChild(button)
-  var imgUrl = "placeholder";
-  button.onclick = function() {
-      const stor = firebase.storage().ref();
-      stor.child(new Date() + '-' + 'base64').putString(image.src, 'data_url').then(function(snapshot) {
-          console.log('Uploaded a data_url string!');
-          alert("Image Uploaded");
-          console.log("FILEEEEEEEEEEEEE 1: ", this.imgUrl);
-          snapshot.ref.getDownloadURL().then(function(downloadURL){
-              console.log('File available at', downloadURL);
-              imgUrl = String(downloadURL);
-              console.log("FILEEEEEEEEEEEEE4: ", imgUrl);
-              console.log("LOCAL STORAGE IS HERE: ", localStorage.getItem("imgUrl"));
-              console.log("FILEEEEEEEEEEEEE: ", imgUrl);
-              localStorage.setItem("URL",String(downloadURL));
-              
+    context.drawImage(video, 0, 0, 400, 400);
+    var image = new Image();
+    image.id = "pic";
+    image.src = canvas.toDataURL();
+    console.log(image.src)
+    var button = document.createElement('button')
+    button.textContent = 'Upload Image'
+    document.body.appendChild(button)
+    var imgUrl = "placeholder";
+    button.onclick = function() {
+    const stor = firebase.storage().ref();
+    stor.child(new Date() + '-' + 'base64').putString(image.src, 'data_url').then(function(snapshot) {
+        console.log('Uploaded a data_url string!');
+        alert("Image Uploaded");
+        console.log("FILEEEEEEEEEEEEE 1: ", this.imgUrl);
+        snapshot.ref.getDownloadURL().then(function(downloadURL){
+            console.log('File available at', downloadURL);
+            imgUrl = String(downloadURL);
+            console.log("FILEEEEEEEEEEEEE4: ", imgUrl);
+            console.log("LOCAL STORAGE IS HERE: ", localStorage.getItem("imgUrl"));
+            console.log("FILEEEEEEEEEEEEE: ", imgUrl);
+            localStorage.setItem("URL",String(downloadURL));   
           });
-          snapshot.ref.getDownloadURL().then(function(downloadURL) {
+        snapshot.ref.getDownloadURL().then(function(downloadURL) {
             var data = {
                 complaintId: complaintId,
                 lat: lat,
@@ -129,17 +128,17 @@ function uploadImage() {
                 url: String(downloadURL),
             };
             ref.push(data);
-          });
+        });
 
           
         // ref.push(data);
         console.log(complaintId);
       });
   }
-  var iUrl = localStorage.getItem("imgUrl");
-  imgUrl = iUrl
-  console.log("FILEEEEEEEEEEEEE 2: ", imgUrl);
-  });
+    var iUrl = localStorage.getItem("imgUrl");
+    imgUrl = iUrl
+    console.log("FILEEEEEEEEEEEEE 2: ", imgUrl);
+});
 
 function newFix(complaintId, position){
     var lat = position.coords.latitude;
