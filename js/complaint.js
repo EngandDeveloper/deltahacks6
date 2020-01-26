@@ -18,7 +18,7 @@ console.log("Firebase is working???", database);
 
 //add data to database
 var ref = database.ref("locations");
-var imgURL = localStorage.getItem("imgUrl");
+var imgURL = String(localStorage.getItem("imgUrl"));
 var start = localStorage.getItem("start");
 console.log("LOCALE STORAGE IS:", localStorage.getItem("imgUrl"));
 console.log("In complaint.js url is ", imgURL);
@@ -37,7 +37,7 @@ function newComplaint(position){
         complaintId: complaintId,
         lat: lat,
         long: long,
-        // url: imageURL,
+        url: imgURL,
     };
     ref.push(data);
     console.log(complaintId);
