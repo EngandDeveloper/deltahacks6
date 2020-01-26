@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>loadmapasyncHTML</title>
+        <style type='text/css'>body{margin:0;padding:0;overflow:hidden;font-family:'Segoe UI',Helvetica,Arial,Sans-Serif}</style>
+        <meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
+        <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?key=AoZcX-cuthQwr9-N_rifZj7pswYrUv-7WiScY-YqFHy7au1ZTK0eDGAcZ6HOXB0B'></script>
+        <script type='text/javascript'>
+                var map;
+                function loadMapScenario() {
+                    map = new Microsoft.Maps.Map(document.getElementById('myMap'), {});
+                }
+        </script>
+    </head>
+    <body onload='loadMapScenario();'>
+        <div id='printoutPanel'></div>
+        
+        <div id='myMap' style='width: 100vw; height: 100vh;'></div>
+    </body>
+    <body>
+
+        <!-- <p>Display current coordinates.</p> -->
+        
+        <button onclick="getLocation()">Display current longitude and latitude.</button>
+        
+        <p id="demo"></p>
+        
+        <script>
+        var x = document.getElementById("demo");
+        
+        function getLocation() {
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+          } else { 
+            x.innerHTML = "Geolocation is not supported by this browser.";
+          }
+        }
+        
+        function showPosition(position) {
+          x.innerHTML = "Latitude: " + position.coords.latitude + 
+          "<br>Longitude: " + position.coords.longitude;
+          var cur_location = new Microsoft.Maps.Location(position.coords.latitude,position.coords.longitude);
+          var pin = new Microsoft.Maps.Pushpin(cur_location,{
+              title: "Thode",
+              subTitle: 'Library',
+              text: '1'
+          });
+          
+          var infobox = new Microsoft.Maps.Infobox(cur_location,{ title: 'LIBRARY', description: 'yeet <img src ="https://vignette.wikia.nocookie.net/adventuretimewithfinnandjake/images/6/68/Gunter.png/revision/latest/scale-to-width-down/120?cb=20121016040602" />' , visible: false });
+          infobox.setMap(map);   
+          Microsoft.Maps.Events.addHandler(pin, 'click', function(){
+              infobox.setOptions({visible: true});
+          });
+          addPin(43.260962,-79.922,"Thode 2","hiya",'"https://firebasestorage.googleapis.com/v0/b/deltahacks6-fa1f6.appspot.com/o/Sun%20Jan%2026%202020%2009%3A53%3A05%20GMT-0500%20(Eastern%20Standard%20Time)-base64?alt=media&token=c9b2cdd6-c4a7-41b3-b494-62c2a6535f05"');
+          map.entities.push(pin);  
+        }
+        function addPin(lat,long,Title,subtitle,url){
+          var location = new Microsoft.Maps.Location(lat,long);
+          var new_pin = new Microsoft.Maps.Pushpin(location,{ 
+            title: Title, subTitle: "test", visible: true});
+          var infobox = new Microsoft.Maps.Infobox(location,{ title: Title, description: subtitle + '<img src =' + url + ' />' , visible: false });
+          infobox.setMap(map);
+          Microsoft.Maps.Events.addHandler(new_pin, 'click', function(){
+              infobox.setOptions({visible: true});
+          });
+          map.entities.push(new_pin);
+        }
+        console.log("past pin");
+        getLocation();
+        
+        
+        
+
+        
+        </script>
+        
+    </body>
+</html>
