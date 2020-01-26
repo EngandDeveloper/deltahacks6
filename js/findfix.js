@@ -22,7 +22,7 @@ var ref = database.ref("fixes");
 
 
 //variables
-// var fixesList = document.getElementById("currentComplaintsList");
+var fixesList = document.getElementById("currentFixedList");
 var complaintId = document.getElementById("complaintID");
 console.log(complaintId.value);
 function checkIdStatus(){
@@ -55,8 +55,9 @@ function gotData(data){
             // String(lat) + "," + String(long) + ") Message: " + String(message);
             // newComplaint.appendChild(complaintImg);
             // currentComplaintsList.appendChild(newComplaint);
-            break;
         }
+
+        var 
     }
 }
 

@@ -156,14 +156,14 @@ function newFix(complaintId, position){
     console.log("Lat and long of the new fix are: ", lat, long);
 }
 
-while(imgURL != null){
-    if(complaintMessageOutput.textContent != ""){
-        newComplaint();
-        newFix(234, position);
-        start = false;
-    }else{
-        alert("Please enter a complaint message!!!");
-    }
-}
+// while(imgURL != null){
+//     if(complaintMessageOutput.textContent != ""){
+//         newComplaint();
+//         newFix(234, position);
+//         start = false;
+//     }else{
+//         alert("Please enter a complaint message!!!");
+//     }
+// }
 
 console.log("got here?")
