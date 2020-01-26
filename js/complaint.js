@@ -1,13 +1,13 @@
 // Firebase config
 // Your web app's Firebase configuration
 var firebaseConfig = {
-apiKey: "AIzaSyBpUTMCZ_0CTHZEQ17BmtonkJ7VaTTFTjM",
-authDomain: "deltahacks6-fa1f6.firebaseapp.com",
-databaseURL: "https://deltahacks6-fa1f6.firebaseio.com",
-projectId: "deltahacks6-fa1f6",
-storageBucket: "deltahacks6-fa1f6.appspot.com",
-messagingSenderId: "568515317237",
-appId: "1:568515317237:web:3c74db9d68b59b7baf64bc"
+    apiKey: "AIzaSyBpUTMCZ_0CTHZEQ17BmtonkJ7VaTTFTjM",
+    authDomain: "deltahacks6-fa1f6.firebaseapp.com",
+    databaseURL: "https://deltahacks6-fa1f6.firebaseio.com",
+    projectId: "deltahacks6-fa1f6",
+    storageBucket: "deltahacks6-fa1f6.appspot.com",
+    messagingSenderId: "568515317237",
+    appId: "1:568515317237:web:3c74db9d68b59b7baf64bc"
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);

@@ -1,33 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Firebase Image Upload in Javascript</title>
-  </head>
-  <body>
-    <input type="file" id="photo" />
-    <button onclick="uploadImage()">Upload Image</button>
-    <!-- Stream video via webcam -->
-
-    <video id="video" width=400 height=400 playsinline controls autoplay></video>
-
-<!-- Trigger canvas web API -->
-    <button id="snap">Capture</button>
-
-<!-- Webcam video snapshot -->
-<canvas id="canvas" width="640" height="480"></canvas>
-  </body>
-  <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-storage.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-database.js"></script>
-
   
-  <!-- <script src="js/camera.js" ></script> -->
-  <script src="js/complaint.js"></script>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Firebase Image Upload in Javascript</title>
+    </head>
   
-  
+    <body>
+        <input type="file" id="photo" />
+        <button onclick="uploadImage()">Upload Image</button>
+        <!-- Stream video via webcam -->
+
+        <video id="video" width=400 height=400 playsinline controls autoplay></video>
+
+        <!-- Trigger canvas web API -->
+        <button id="snap">Capture</button>
+
+        <!-- Webcam video snapshot -->
+        <canvas id="canvas" width="400" height="400"></canvas>
+    </body>
+    
+    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-database.js"></script>
+
+    <!-- <script src="js/camera.js" ></script> -->
+    <script src="js/complaint.js"></script>
   
 </html>

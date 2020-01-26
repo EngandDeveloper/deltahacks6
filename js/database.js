@@ -21,6 +21,9 @@ console.log("Data base is: ", database);
 var ref = database.ref("locations");
 ref.on("value", gotData, errData);
 
+//variables
+var currentComplaintsList = document.getElementById("currentComplaintsList");
+
 function gotData(data){
     console.log(data.val());
     var locations = data.val();
@@ -32,6 +35,10 @@ function gotData(data){
         var long = locations[k].long;
         var url = locations[k].url;
         console.log(complaintId, lat, long, url);
+        var newComplaint = document.createElement("li");
+        newComplaint.textContent = "Complaint ID: " + String(complaintId) + " Lat, Long: (" + 
+        String(lat) + "," + String(long) + ") Picture url: " + url;
+        currentComplaintsList.appendChild(newComplaint);
     }
 }
 
